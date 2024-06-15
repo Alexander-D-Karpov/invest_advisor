@@ -1,0 +1,627 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-15 16:04+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: invest_advisor/chat/models.py:11
+msgid "Категория объекта"
+msgstr ""
+
+#: invest_advisor/chat/models.py:14
+msgid "Объект особого назначения"
+msgstr ""
+
+#: invest_advisor/chat/models.py:18
+msgid "Наименование объекта"
+msgstr ""
+
+#: invest_advisor/chat/models.py:21 invest_advisor/chat/models.py:126
+#: invest_advisor/chat/models.py:313
+msgid "Регион"
+msgstr ""
+
+#: invest_advisor/chat/models.py:23 invest_advisor/chat/models.py:315
+msgid "Муниципальное образование"
+msgstr ""
+
+#: invest_advisor/chat/models.py:26
+msgid "Ближайший регион"
+msgstr ""
+
+#: invest_advisor/chat/models.py:29
+msgid "Количество резидентов"
+msgstr ""
+
+#: invest_advisor/chat/models.py:31 invest_advisor/chat/models.py:588
+msgid "Фотографии объекта"
+msgstr ""
+
+#: invest_advisor/chat/models.py:32
+msgid "Документы"
+msgstr ""
+
+#: invest_advisor/chat/models.py:34
+msgid "Год формирования объекта"
+msgstr ""
+
+#: invest_advisor/chat/models.py:37
+msgid "Срок действия объекта, лет"
+msgstr ""
+
+#: invest_advisor/chat/models.py:42
+msgid "Общая площадь, кв. м"
+msgstr ""
+
+#: invest_advisor/chat/models.py:48 invest_advisor/chat/models.py:155
+msgid "Минимальная стоимость аренды, руб./кв.м/год"
+msgstr ""
+
+#: invest_advisor/chat/models.py:52
+msgid "Возможность выкупа помещения / участка (да / нет)"
+msgstr ""
+
+#: invest_advisor/chat/models.py:56 invest_advisor/chat/models.py:167
+msgid "Перечень видов деятельности"
+msgstr ""
+
+#: invest_advisor/chat/models.py:60
+msgid "Ограничения по видам деятельности"
+msgstr ""
+
+#: invest_advisor/chat/models.py:64 invest_advisor/chat/models.py:173
+msgid "Инфраструктура и сервисы"
+msgstr ""
+
+#: invest_advisor/chat/models.py:68
+msgid "Дополнительные услуги управляющей компании"
+msgstr ""
+
+#: invest_advisor/chat/models.py:71
+msgid "Название администратора объекта"
+msgstr ""
+
+#: invest_advisor/chat/models.py:74
+msgid "Адрес администратора объекта"
+msgstr ""
+
+#: invest_advisor/chat/models.py:76
+msgid "Ссылка на сайт"
+msgstr ""
+
+#: invest_advisor/chat/models.py:78
+msgid "Время работы"
+msgstr ""
+
+#: invest_advisor/chat/models.py:81
+msgid "Налог на прибыль"
+msgstr ""
+
+#: invest_advisor/chat/models.py:84
+msgid "Налог на имущество"
+msgstr ""
+
+#: invest_advisor/chat/models.py:87
+msgid "Земельный налог"
+msgstr ""
+
+#: invest_advisor/chat/models.py:90
+msgid "Транспортный налог"
+msgstr ""
+
+#: invest_advisor/chat/models.py:93
+msgid "Страховые взносы"
+msgstr ""
+
+#: invest_advisor/chat/models.py:95
+msgid "Прочие льготы"
+msgstr ""
+
+#: invest_advisor/chat/models.py:97
+msgid "Наличие режима свободной таможенной зоны (да/нет), условия"
+msgstr ""
+
+#: invest_advisor/chat/models.py:100
+msgid "Как стать резидентом"
+msgstr ""
+
+#: invest_advisor/chat/models.py:104
+msgid "Минимальный объём инвестиций, млн руб"
+msgstr ""
+
+#: invest_advisor/chat/models.py:108 invest_advisor/chat/models.py:593
+msgid "Координаты: широта"
+msgstr ""
+
+#: invest_advisor/chat/models.py:111 invest_advisor/chat/models.py:596
+msgid "Координаты: долгота"
+msgstr ""
+
+#: invest_advisor/chat/models.py:118
+msgid "Технопарк"
+msgstr ""
+
+#: invest_advisor/chat/models.py:119
+msgid "Технопарки"
+msgstr ""
+
+#: invest_advisor/chat/models.py:131
+msgid "Минимальное количество резидентов"
+msgstr ""
+
+#: invest_advisor/chat/models.py:134
+msgid "Максимальное количество резидентов"
+msgstr ""
+
+#: invest_advisor/chat/models.py:139
+msgid "Минимальный год формирования объекта"
+msgstr ""
+
+#: invest_advisor/chat/models.py:142
+msgid "Максимальный год формирования объекта"
+msgstr ""
+
+#: invest_advisor/chat/models.py:147
+msgid "Минимальная общая площадь, кв. м"
+msgstr ""
+
+#: invest_advisor/chat/models.py:150
+msgid "Максимальная общая площадь, кв. м"
+msgstr ""
+
+#: invest_advisor/chat/models.py:160
+msgid "Максимальная стоимость аренды, руб./кв.м/год"
+msgstr ""
+
+#: invest_advisor/chat/models.py:181
+msgid "Минимальный налог на прибыль"
+msgstr ""
+
+#: invest_advisor/chat/models.py:188
+msgid "Максимальный налог на прибыль"
+msgstr ""
+
+#: invest_advisor/chat/models.py:197
+msgid "Минимальный налог на имущество"
+msgstr ""
+
+#: invest_advisor/chat/models.py:204
+msgid "Максимальный налог на имущество"
+msgstr ""
+
+#: invest_advisor/chat/models.py:213
+msgid "Минимальный земельный налог"
+msgstr ""
+
+#: invest_advisor/chat/models.py:220
+msgid "Максимальный земельный налог"
+msgstr ""
+
+#: invest_advisor/chat/models.py:229
+msgid "Минимальный транспортный налог"
+msgstr ""
+
+#: invest_advisor/chat/models.py:236
+msgid "Максимальный транспортный налог"
+msgstr ""
+
+#: invest_advisor/chat/models.py:245
+msgid "Минимальные страховые взносы"
+msgstr ""
+
+#: invest_advisor/chat/models.py:252
+msgid "Максимальные страховые взносы"
+msgstr ""
+
+#: invest_advisor/chat/models.py:258
+msgid "Наличие режима свободной таможенной зоны"
+msgstr ""
+
+#: invest_advisor/chat/models.py:267
+msgid "Минимальный объем инвестиций, млн руб"
+msgstr ""
+
+#: invest_advisor/chat/models.py:274
+msgid "Максимальный объем инвестиций, млн руб"
+msgstr ""
+
+#: invest_advisor/chat/models.py:280
+msgid "Дополнительные предпочтения"
+msgstr ""
+
+#: invest_advisor/chat/models.py:287
+msgid "Заявка на технопарк"
+msgstr ""
+
+#: invest_advisor/chat/models.py:288
+msgid "Заявки на технопарк"
+msgstr ""
+
+#: invest_advisor/chat/models.py:292
+msgid "Название площадки"
+msgstr ""
+
+#: invest_advisor/chat/models.py:294
+msgid "Преференциальный режим"
+msgstr ""
+
+#: invest_advisor/chat/models.py:297
+msgid "Наименование объекта преференциального режима"
+msgstr ""
+
+#: invest_advisor/chat/models.py:301
+msgid "Наименование объекта преференциального режима_наименование"
+msgstr ""
+
+#: invest_advisor/chat/models.py:304
+msgid "Объект инфраструктуры поддержки"
+msgstr ""
+
+#: invest_advisor/chat/models.py:307
+msgid "Наименование объекта инфраструктуры поддержки"
+msgstr ""
+
+#: invest_advisor/chat/models.py:311
+msgid "Наименование объекта инфраструктуры поддержки_наименование"
+msgstr ""
+
+#: invest_advisor/chat/models.py:317
+msgid "Адрес объекта"
+msgstr ""
+
+#: invest_advisor/chat/models.py:318
+msgid "Ближайший город"
+msgstr ""
+
+#: invest_advisor/chat/models.py:319
+msgid "Формат площадки"
+msgstr ""
+
+#: invest_advisor/chat/models.py:320
+msgid "Тип площадки"
+msgstr ""
+
+#: invest_advisor/chat/models.py:322
+msgid "Форма собственности объекта"
+msgstr ""
+
+#: invest_advisor/chat/models.py:324
+msgid "Форма сделки"
+msgstr ""
+
+#: invest_advisor/chat/models.py:328
+msgid "Стоимость объекта, руб. (покупки или месячной аренды)"
+msgstr ""
+
+#: invest_advisor/chat/models.py:331
+msgid "Стоимость, руб./год за га"
+msgstr ""
+
+#: invest_advisor/chat/models.py:334
+msgid "Стоимость, руб./год за кв.м."
+msgstr ""
+
+#: invest_advisor/chat/models.py:337
+msgid "min сроки аренды (если применимо), лет"
+msgstr ""
+
+#: invest_advisor/chat/models.py:340
+msgid "max сроки аренды (если применимо), лет"
+msgstr ""
+
+#: invest_advisor/chat/models.py:343
+msgid "Порядок определения стоимости"
+msgstr ""
+
+#: invest_advisor/chat/models.py:346
+msgid "Класс опасности объекта"
+msgstr ""
+
+#: invest_advisor/chat/models.py:350
+msgid "Характеристики расположенных объектов капитального строительства"
+msgstr ""
+
+#: invest_advisor/chat/models.py:354
+msgid "Свободная площадь ЗУ, га"
+msgstr ""
+
+#: invest_advisor/chat/models.py:357
+msgid "Кадастровый номер ЗУ"
+msgstr ""
+
+#: invest_advisor/chat/models.py:360
+msgid "Варианты разрешенного использования"
+msgstr ""
+
+#: invest_advisor/chat/models.py:362
+msgid "Межевание ЗУ"
+msgstr ""
+
+#: invest_advisor/chat/models.py:363
+msgid "Категория земель"
+msgstr ""
+
+#: invest_advisor/chat/models.py:367
+msgid "Свободная площадь здания, сооружения, помещения, кв. м"
+msgstr ""
+
+#: invest_advisor/chat/models.py:371
+msgid "Кадастровый номер здания, сооружения, помещения"
+msgstr ""
+
+#: invest_advisor/chat/models.py:374
+msgid "Технические характеристики здания, сооружения, помещения"
+msgstr ""
+
+#: invest_advisor/chat/models.py:378
+msgid "Наименование собственника / администратора объекта"
+msgstr ""
+
+#: invest_advisor/chat/models.py:380
+msgid "ИНН собственника"
+msgstr ""
+
+#: invest_advisor/chat/models.py:381
+msgid "Сайт"
+msgstr ""
+
+#: invest_advisor/chat/models.py:382
+msgid "Примечание"
+msgstr ""
+
+#: invest_advisor/chat/models.py:384
+msgid "Водоснабжение Наличие (Да/Нет)"
+msgstr ""
+
+#: invest_advisor/chat/models.py:389
+msgid "Водоснабжение Тариф на потребление, руб./куб. м"
+msgstr ""
+
+#: invest_advisor/chat/models.py:394
+msgid "Водоснабжение Тариф на транспортировку, руб./куб. м"
+msgstr ""
+
+#: invest_advisor/chat/models.py:400
+msgid "Объекты водоснабжения Максимально допустимая мощность, куб. м/ч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:406
+msgid "Объекты водоснабжения Свободная мощность, куб.м/ч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:409
+msgid "Объекты водоснабжения Иные характеристики"
+msgstr ""
+
+#: invest_advisor/chat/models.py:414
+msgid "Сети водоснабжения Пропускная способность, куб. м/ч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:417
+msgid "Водоотведение Наличие (Да/Нет)"
+msgstr ""
+
+#: invest_advisor/chat/models.py:422
+msgid "Водоотведение Тариф на потребление, руб./куб. м"
+msgstr ""
+
+#: invest_advisor/chat/models.py:427
+msgid "Водоотведение Тариф на транспортировку, руб./куб. м"
+msgstr ""
+
+#: invest_advisor/chat/models.py:433
+msgid "Объекты водоотведения Максимально допустимая мощность, куб. м/ч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:439
+msgid "Объекты водоотведения Свободная мощность, куб. м/ч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:442
+msgid "Объекты водоотведения Иные характеристики"
+msgstr ""
+
+#: invest_advisor/chat/models.py:447
+msgid "Сети водоотведения Пропускная способность, куб. м/ч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:450
+msgid "Газоснабжение Наличие (Да/Нет)"
+msgstr ""
+
+#: invest_advisor/chat/models.py:455
+msgid "Газоснабжение Тариф на потребление, руб./куб. м"
+msgstr ""
+
+#: invest_advisor/chat/models.py:460
+msgid "Газоснабжение Тариф на транспортировку, руб./куб. м"
+msgstr ""
+
+#: invest_advisor/chat/models.py:466
+msgid "Объекты газоснабжения Максимально допустимая мощность, куб. м/ч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:472
+msgid "Объекты газоснабжения Свободная мощность, куб. м/ч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:475
+msgid "Объекты газоснабжения Иные характеристики"
+msgstr ""
+
+#: invest_advisor/chat/models.py:480
+msgid "Сети газоснабжения Пропускная способность, куб. м/ч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:483
+msgid "Электроснабжение Наличие (Да/Нет)"
+msgstr ""
+
+#: invest_advisor/chat/models.py:488
+msgid "Электроснабжение Тариф на потребление, руб./МВтч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:493
+msgid "Электроснабжение Тариф на транспортировку, руб./МВтч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:499
+msgid "Объекты электроснабжения Максимально допустимая мощность, МВт/ч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:505
+msgid "Объекты электроснабжения Свободная мощность, МВт/ч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:508
+msgid "Объекты электроснабжения Иные характеристики"
+msgstr ""
+
+#: invest_advisor/chat/models.py:513
+msgid "Сети электроснабжения Пропускная способность, МВт/ч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:516
+msgid "Теплоснабжение Наличие (Да/Нет)"
+msgstr ""
+
+#: invest_advisor/chat/models.py:521
+msgid "Теплоснабжение Тариф на потребление, руб./Гкалч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:526
+msgid "Теплоснабжение Тариф на транспортировку, руб./Гкалч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:532
+msgid "Объекты теплоснабжения Максимально допустимая мощность, Гкал/ч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:539
+msgid "Объекты теплоснабжения Свободная мощность, Гкал/ч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:542
+msgid "Объекты теплоснабжения Иные характеристики"
+msgstr ""
+
+#: invest_advisor/chat/models.py:547
+msgid "Сети теплоснабжения Пропускная способность, Гкал/ч"
+msgstr ""
+
+#: invest_advisor/chat/models.py:550
+msgid "Вывоз ТКО Наличие (Да/Нет)"
+msgstr ""
+
+#: invest_advisor/chat/models.py:553
+msgid "Вывоз ТКО Тариф, руб./тонна"
+msgstr ""
+
+#: invest_advisor/chat/models.py:556
+msgid "Вывоз ТКО Тариф, руб./куб. м"
+msgstr ""
+
+#: invest_advisor/chat/models.py:559
+msgid "Наличие подъездных путей (Да/Нет)"
+msgstr ""
+
+#: invest_advisor/chat/models.py:561
+msgid "Наличие ж/д (Да/Нет)"
+msgstr ""
+
+#: invest_advisor/chat/models.py:563
+msgid "Наличие парковки грузового транспорта"
+msgstr ""
+
+#: invest_advisor/chat/models.py:565
+msgid "Иные характеристики"
+msgstr ""
+
+#: invest_advisor/chat/models.py:567
+msgid "Описание процедуры подачи заявки"
+msgstr ""
+
+#: invest_advisor/chat/models.py:570
+msgid "Перечень документов, необходимых для подачи заявки"
+msgstr ""
+
+#: invest_advisor/chat/models.py:573
+msgid "Ссылка на форму подачи заявки"
+msgstr ""
+
+#: invest_advisor/chat/models.py:577
+msgid ""
+"Перечень видов экономической деятельности, возможных к реализации на площадке"
+msgstr ""
+
+#: invest_advisor/chat/models.py:581
+msgid "Градостроительные характеристики и ограничения"
+msgstr ""
+
+#: invest_advisor/chat/models.py:584
+msgid "Документы территориального планирования"
+msgstr ""
+
+#: invest_advisor/chat/models.py:586
+msgid "Иные сведения"
+msgstr ""
+
+#: invest_advisor/chat/models.py:590
+msgid "Наличие МАИП"
+msgstr ""
+
+#: invest_advisor/chat/models.py:591
+msgid "Описание льготы"
+msgstr ""
+
+#: invest_advisor/chat/models.py:603
+msgid "Объект недвижимости"
+msgstr ""
+
+#: invest_advisor/chat/models.py:604
+msgid "Объекты недвижимости"
+msgstr ""
+
+#: invest_advisor/users/api/serializers.py:10
+msgid "Enter a valid URL."
+msgstr "Введите правильный URL."
+
+#: invest_advisor/users/apps.py:7
+msgid "Users"
+msgstr "Пользователи"
+
+#: invest_advisor/users/models.py:16
+msgid "The Email must be set"
+msgstr "email должен быть установлен"
+
+#: invest_advisor/users/models.py:34
+msgid "Superuser must have is_staff=True."
+msgstr "Суперпользователь должен иметь is_staff=True."
+
+#: invest_advisor/users/models.py:36
+msgid "Superuser must have is_superuser=True."
+msgstr "Суперпользователь должен иметь is_superuser=True."
+
+#: invest_advisor/users/models.py:45
+msgid "ФИО"
+msgstr ""
+
+#: invest_advisor/users/models.py:48 invest_advisor/users/models.py:63
+msgid "ИНН"
+msgstr ""

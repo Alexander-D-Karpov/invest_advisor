@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=invest_advisor
+POSTGRES_USER=GGtbyVxtpXugLOtdPVNSRUThDJlkKNnp
+POSTGRES_PASSWORD=PblwWvUwFM9JmPYghpjGUycGiuuOyYOHVUi2iPsN9UJKpDD9SqOD4DT85VcdbKbw
