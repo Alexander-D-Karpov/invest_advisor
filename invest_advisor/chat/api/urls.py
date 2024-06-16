@@ -7,11 +7,21 @@ from invest_advisor.chat.api.views import (
     RetrieveUpdateDestroyBuildingSubmissionAPIView,
     RetrieveUpdateDestroyTechnoparkSubmissionAPIView,
     TechnoparkOptionsAPIView,
+    SubmitTechnoparkSubmissionAPIView,
+    ListChatAPIView,
+    ListCreateChatMessageAPIView,
+    SubmitBuildingSubmissionAPIView,
 )
 
 app_name = "chat"
 
 urlpatterns = [
+    path("", ListChatAPIView.as_view(), name="chat"),
+    path(
+        "<str:id>/messages/",
+        ListCreateChatMessageAPIView.as_view(),
+        name="chat-messages",
+    ),
     path(
         "technopark/",
         ListCreateTechnoparkSubmissionAPIView.as_view(),
@@ -20,6 +30,11 @@ urlpatterns = [
     path(
         "technopark/<str:id>",
         RetrieveUpdateDestroyTechnoparkSubmissionAPIView.as_view(),
+        name="technopark-detail",
+    ),
+    path(
+        "technopark/<str:id>/submit/",
+        SubmitTechnoparkSubmissionAPIView.as_view(),
         name="technopark-detail",
     ),
     path(
@@ -41,5 +56,10 @@ urlpatterns = [
         "building/<str:id>/question/<int:question>/options/",
         BuildingOptionsAPIView.as_view(),
         name="building-options",
+    ),
+    path(
+        "building/<str:id>/submit/",
+        SubmitBuildingSubmissionAPIView.as_view(),
+        name="building-detail",
     ),
 ]

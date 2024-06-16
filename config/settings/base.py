@@ -318,9 +318,9 @@ CELERY_TASK_SERIALIZER = "json"
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-result_serializer
 CELERY_RESULT_SERIALIZER = "json"
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#task-time-limit
-CELERY_TASK_TIME_LIMIT = 5 * 60
+CELERY_TASK_TIME_LIMIT = 15 * 60
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#task-soft-time-limit
-CELERY_TASK_SOFT_TIME_LIMIT = 60
+CELERY_TASK_SOFT_TIME_LIMIT = 5 * 60
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#beat-scheduler
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#worker-send-task-events
@@ -351,10 +351,6 @@ SPECTACULAR_SETTINGS = {
     "SERVE_INCLUDE_SCHEMA": False,
     "SERVE_PERMISSIONS": [],
     "SERVERS": [
-        {
-            "url": "http://192.168.200.232:8000",
-            "description": "Local Development server",
-        },
         {"url": "http://127.0.0.1:8000", "description": "Local Development server"},
         {
             "url": "https://3cc4-135-181-80-216.ngrok-free.app",
@@ -365,3 +361,4 @@ SPECTACULAR_SETTINGS = {
 
 DADATA_API_KEY = env("DADATA_API_KEY", default="")
 DADATA_SECRET_KEY = env("DADATA_SECRET_KEY", default="")
+ML_HOST = env("ML_HOST", default="http://81.19.140.77:8000")

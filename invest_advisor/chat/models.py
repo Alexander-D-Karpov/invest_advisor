@@ -290,8 +290,10 @@ class TechnoparkSubmission(models.Model):
         verbose_name=_("Дополнительные предпочтения"), null=True, blank=True
     )
 
+    ml_data = models.JSONField(verbose_name=_("Данные от ML"), null=True)
+
     def __str__(self):
-        return self.region
+        return self.name
 
     class Meta:
         verbose_name = _("Заявка на технопарк")
@@ -933,9 +935,46 @@ class BuildingSubmission(models.Model):
         verbose_name=_("Дополнительные комментарии"), null=True, blank=True
     )
 
+    ml_data = models.JSONField(verbose_name=_("Данные от ML"), null=True)
+
     def __str__(self):
-        return self.region
+        return self.name
 
     class Meta:
         verbose_name = _("Заявка на подбор здания")
         verbose_name_plural = _("Заявки на подбор здания")
+
+
+class Chat(models.Model):
+    type = models.CharField(
+        choices=[
+            ("technopark", _("Технопарк")),
+            ("building", _("Объект недвижимости")),
+        ],
+        max_length=20,
+    )
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(
+        max_length=500, verbose_name=_("Имя чата"), default="Новый чат"
+    )
+    user = models.ForeignKey(
+        "users.User",
+        on_delete=models.CASCADE,
+        verbose_name=_("Пользователь"),
+        related_name="chats",
+        null=True,
+    )
+    created = models.DateTimeField(auto_now_add=True)
+
+
+class ChatMessage(models.Model):
+    chat = models.ForeignKey(
+        "Chat",
+        on_delete=models.CASCADE,
+        verbose_name=_("Чат"),
+        related_name="messages",
+        null=True,
+    )
+    from_user = models.BooleanField(verbose_name=_("Отправитель - пользователь"))
+    text = models.TextField(verbose_name=_("Текст сообщения"))
+    created = models.DateTimeField(auto_now_add=True)

@@ -1,7 +1,12 @@
 from django.db.models import QuerySet
 from rest_framework import serializers
 
-from invest_advisor.chat.models import BuildingSubmission, TechnoparkSubmission
+from invest_advisor.chat.models import (
+    BuildingSubmission,
+    TechnoparkSubmission,
+    Chat,
+    ChatMessage,
+)
 
 
 class ListTechnoparkSubmissionSerializer(serializers.ModelSerializer):
@@ -59,3 +64,22 @@ class ListBuildingSubmissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = BuildingSubmission
         fields = ["id", "name"]
+
+
+class ListChatsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Chat
+        fields = ["id", "name", "type"]
+
+
+class ListChatMessagesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ChatMessage
+        fields = ["text", "from_user", "created"]
+        extra_kwargs = {
+            "from_user": {"read_only": True},
+            "created": {"read_only": True},
+        }
+
+    def save(self, **kwargs):
+        return ChatMessage.objects.create(**kwargs, **self.validated_data)

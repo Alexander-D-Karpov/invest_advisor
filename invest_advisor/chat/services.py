@@ -118,11 +118,12 @@ def get_options_for_technopark_question(question_number, technoparks):
         13: {"field": "free_custom_zone", "type": "boolean"},
         14: {"field": ["minimal_investment_volume"], "type": "range"},
     }
-    if question_number not in question_field_mapping:
-        raise ValidationError("Invalid question number")
+    if question_number > 14:
+        return None, None
     field_info = question_field_mapping[question_number]
     fields = field_info["field"]
     field_type = field_info["type"]
+    next_question = question_number + 1 if technoparks.count() != 0 else None
 
     if field_type == "range":
         min_field, max_field = fields[0], fields[0]
@@ -132,7 +133,7 @@ def get_options_for_technopark_question(question_number, technoparks):
         max_value = technoparks.exclude(**{f"{max_field}__isnull": True}).aggregate(
             models.Max(max_field)
         )[f"{max_field}__max"]
-        return min_value, max_value
+        return (min_value, max_value), next_question
 
     if field_type == "array":
         options = (
@@ -143,19 +144,21 @@ def get_options_for_technopark_question(question_number, technoparks):
         unique_options = set()
         for option in options:
             unique_options.update(option)
-        return list(unique_options)
+        return list(unique_options), next_question
 
     if field_type == "boolean":
         return (
             technoparks.values_list(fields, flat=True)
             .distinct()
-            .exclude(**{f"{fields}__isnull": True})
+            .exclude(**{f"{fields}__isnull": True}),
+            next_question,
         )
 
     return (
         technoparks.values_list(fields, flat=True)
         .distinct()
-        .exclude(**{f"{fields}__isnull": True})
+        .exclude(**{f"{fields}__isnull": True}),
+        next_question,
     )
 
 
