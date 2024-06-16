@@ -432,16 +432,32 @@ class BuildingModel(models.Model):
     water_supply_available = models.BooleanField(
         verbose_name=_("Водоснабжение Наличие (Да/Нет)"), null=True
     )
-    water_supply_rate_consumption = models.DecimalField(
+    water_supply_rate_consumption_min = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        verbose_name=_("Водоснабжение Тариф на потребление, руб./куб. м"),
+        verbose_name=_("Водоснабжение Тариф на потребление, минимальный, руб./куб. м"),
         null=True,
     )
-    water_supply_rate_transport = models.DecimalField(
+    water_supply_rate_consumption_max = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        verbose_name=_("Водоснабжение Тариф на транспортировку, руб./куб. м"),
+        verbose_name=_("Водоснабжение Тариф на потребление, максимальный, руб./куб. м"),
+        null=True,
+    )
+    water_supply_rate_transport_min = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name=_(
+            "Водоснабжение Тариф на транспортировку, минимальный, руб./куб. м"
+        ),
+        null=True,
+    )
+    water_supply_rate_transport_max = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name=_(
+            "Водоснабжение Тариф на транспортировку, максимальный, руб./куб. м"
+        ),
         null=True,
     )
     water_supply_objects_max_capacity = models.DecimalField(
@@ -508,10 +524,16 @@ class BuildingModel(models.Model):
     gas_supply_available = models.BooleanField(
         verbose_name=_("Газоснабжение Наличие (Да/Нет)"), null=True
     )
-    gas_supply_rate_consumption = models.DecimalField(
+    gas_supply_rate_consumption_min = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        verbose_name=_("Газоснабжение Тариф на потребление, руб./куб. м"),
+        verbose_name=_("Газоснабжение Тариф на потребление, минимальный, руб./куб. м"),
+        null=True,
+    )
+    gas_supply_rate_consumption_max = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name=_("Газоснабжение Тариф на потребление, максимальный, руб./куб. м"),
         null=True,
     )
     gas_supply_rate_transport = models.DecimalField(
@@ -546,10 +568,20 @@ class BuildingModel(models.Model):
     electricity_supply_available = models.BooleanField(
         verbose_name=_("Электроснабжение Наличие (Да/Нет)"), null=True
     )
-    electricity_rate_consumption = models.DecimalField(
+    electricity_rate_consumption_min = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        verbose_name=_("Электроснабжение Тариф на потребление, руб./МВтч"),
+        verbose_name=_(
+            "Электроснабжение Тариф на потребление, минимальный, руб./КВт*ч"
+        ),
+        null=True,
+    )
+    electricity_rate_consumption_max = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name=_(
+            "Электроснабжение Тариф на потребление, максимальный, руб./КВт*ч"
+        ),
         null=True,
     )
     electricity_rate_transport = models.DecimalField(
@@ -593,7 +625,7 @@ class BuildingModel(models.Model):
     heating_rate_transport = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        verbose_name=_("Теплоснабжение Тариф на транспортировку, руб./Гкалч"),
+        verbose_name=_("Теплоснабжение Тариф на транспортировку, руб./Гкал*ч"),
         null=True,
     )
     heating_objects_max_capacity = models.DecimalField(
@@ -700,7 +732,7 @@ class BuildingSubmission(models.Model):
     )
     state = models.IntegerField(default=0)
 
-    pref_treatment = models.BooleanField(
+    pref_treatment = models.CharField(
         verbose_name=_("Преференциальный режим"), null=True, blank=True
     )
 
@@ -747,17 +779,16 @@ class BuildingSubmission(models.Model):
     min_water_supply_rate_consumption = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        verbose_name=_("Минимальный тариф на потребление водоснабжения, руб./куб. м"),
+        verbose_name=_("Водоснабжение Тариф на потребление, минимальный, руб./куб. м"),
         null=True,
-        blank=True,
     )
     max_water_supply_rate_consumption = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        verbose_name=_("Максимальный тариф на потребление водоснабжения, руб./куб. м"),
+        verbose_name=_("Водоснабжение Тариф на потребление, максимальный, руб./куб. м"),
         null=True,
-        blank=True,
     )
+
     min_water_supply_rate_transport = models.DecimalField(
         max_digits=10,
         decimal_places=2,
@@ -798,19 +829,23 @@ class BuildingSubmission(models.Model):
     gas_supply_available = models.BooleanField(
         verbose_name=_("Газоснабжение Наличие"), null=True, blank=True
     )
-    min_gas_supply_rate_consumption = models.DecimalField(
+    gas_supply_rate_consumption = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        verbose_name=_("Минимальный тариф на потребление газоснабжения, руб./куб. м"),
+        verbose_name=_("Газоснабжение Тариф на потребление, руб./куб. м"),
         null=True,
-        blank=True,
     )
-    max_gas_supply_rate_consumption = models.DecimalField(
+    gas_supply_rate_consumption_min = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        verbose_name=_("Максимальный тариф на потребление газоснабжения, руб./куб. м"),
+        verbose_name=_("Газоснабжение Тариф на потребление, минимальный, руб./куб. м"),
         null=True,
-        blank=True,
+    )
+    gas_supply_rate_consumption_max = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name=_("Газоснабжение Тариф на потребление, максимальный, руб./куб. м"),
+        null=True,
     )
     min_gas_supply_rate_transport = models.DecimalField(
         max_digits=10,
@@ -976,5 +1011,9 @@ class ChatMessage(models.Model):
         null=True,
     )
     from_user = models.BooleanField(verbose_name=_("Отправитель - пользователь"))
+    file = models.FileField(
+        upload_to="chat_files", verbose_name=_("Файл"), null=True, blank=True
+    )
+    data = models.JSONField(verbose_name=_("Данные"), null=True, blank=True)
     text = models.TextField(verbose_name=_("Текст сообщения"))
     created = models.DateTimeField(auto_now_add=True)

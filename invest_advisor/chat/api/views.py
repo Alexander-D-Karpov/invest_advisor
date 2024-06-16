@@ -11,8 +11,14 @@ from invest_advisor.chat.api.serializers import (
     TechnoparkSubmissionSerializer,
     ListChatsSerializer,
     ListChatMessagesSerializer,
+    RequestFileSerializer,
 )
-from invest_advisor.chat.models import BuildingSubmission, TechnoparkSubmission, Chat
+from invest_advisor.chat.models import (
+    BuildingSubmission,
+    TechnoparkSubmission,
+    Chat,
+    ChatMessage,
+)
 from invest_advisor.chat.services import (
     filter_buildings,
     filter_technoparks,
@@ -199,7 +205,7 @@ class ListCreateChatMessageAPIView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         chat = get_object_or_404(Chat, id=self.kwargs["id"])
-        return chat.messages.all()
+        return ChatMessage.objects.filter(chat=chat).order_by("created")
 
     def perform_create(self, serializer):
         chat = get_object_or_404(Chat, id=self.kwargs["id"])
@@ -218,3 +224,27 @@ class ListCreateChatMessageAPIView(generics.ListCreateAPIView):
     )
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
+
+
+class RequestFileAPIView(generics.GenericAPIView):
+    permission_classes = [permissions.AllowAny]
+    serializer_class = RequestFileSerializer
+
+    @extend_schema(
+        request=RequestFileSerializer,
+        responses={
+            200: {"message": "File has been successfully requested for download"}
+        },
+    )
+    def post(self, request, *args, **kwargs):
+        chat = get_object_or_404(Chat, id=self.kwargs["id"])
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        send_data_to_ml.apply_async(
+            kwargs={"type": "file", "obj_id": chat.id, "extra_data": serializer.data},
+            countdown=1,
+        )
+        return Response(
+            {"message": "File has been successfully requested for download"},
+            status=status.HTTP_200_OK,
+        )

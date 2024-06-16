@@ -1,3 +1,9 @@
+import tempfile
+from ast import literal_eval
+
+import markdown
+import pdfkit
+from django.core.files import File
 from django.db import models
 from django.db.models import Q
 from rest_framework.exceptions import ValidationError
@@ -192,29 +198,29 @@ def filter_buildings(submission):
             water_supply_available=submission.water_supply_available
         )
     if submission.water_supply_available:
-        if submission.min_water_supply_rate_consumption is not None:
+        if (
+            submission.min_water_supply_rate_consumption is not None
+            and submission.max_water_supply_rate_consumption is not None
+        ):
             buildings = buildings.filter(
-                water_supply_rate_consumption__gte=submission.min_water_supply_rate_consumption
+                Q(
+                    water_supply_rate_consumption_min__gte=submission.min_water_supply_rate_consumption
+                )
+                & Q(
+                    water_supply_rate_consumption_max__lte=submission.max_water_supply_rate_consumption
+                )
             )
-        if submission.max_water_supply_rate_consumption is not None:
+        if (
+            submission.min_water_supply_objects_max_capacity is not None
+            and submission.max_water_supply_objects_max_capacity is not None
+        ):
             buildings = buildings.filter(
-                water_supply_rate_consumption__lte=submission.max_water_supply_rate_consumption
-            )
-        if submission.min_water_supply_rate_transport is not None:
-            buildings = buildings.filter(
-                water_supply_rate_transport__gte=submission.min_water_supply_rate_transport
-            )
-        if submission.max_water_supply_rate_transport is not None:
-            buildings = buildings.filter(
-                water_supply_rate_transport__lte=submission.max_water_supply_rate_transport
-            )
-        if submission.min_water_supply_objects_max_capacity is not None:
-            buildings = buildings.filter(
-                water_supply_objects_max_capacity__gte=submission.min_water_supply_objects_max_capacity
-            )
-        if submission.max_water_supply_objects_max_capacity is not None:
-            buildings = buildings.filter(
-                water_supply_objects_max_capacity__lte=submission.max_water_supply_objects_max_capacity
+                Q(
+                    water_supply_objects_max_capacity__gte=submission.min_water_supply_objects_max_capacity
+                )
+                & Q(
+                    water_supply_objects_max_capacity__lte=submission.max_water_supply_objects_max_capacity
+                )
             )
 
     if submission.gas_supply_available is not None:
@@ -222,21 +228,26 @@ def filter_buildings(submission):
             gas_supply_available=submission.gas_supply_available
         )
     if submission.gas_supply_available:
-        if submission.min_gas_supply_rate_consumption is not None:
+        if submission.gas_supply_rate_consumption is not None:
             buildings = buildings.filter(
-                gas_supply_rate_consumption__gte=submission.min_gas_supply_rate_consumption
+                Q(
+                    gas_supply_rate_consumption_min__lte=submission.gas_supply_rate_consumption
+                )
+                & Q(
+                    gas_supply_rate_consumption_max__gte=submission.gas_supply_rate_consumption
+                )
             )
-        if submission.max_gas_supply_rate_consumption is not None:
+        if (
+            submission.min_gas_supply_rate_transport is not None
+            and submission.max_gas_supply_rate_transport is not None
+        ):
             buildings = buildings.filter(
-                gas_supply_rate_consumption__lte=submission.max_gas_supply_rate_consumption
-            )
-        if submission.min_gas_supply_rate_transport is not None:
-            buildings = buildings.filter(
-                gas_supply_rate_transport__gte=submission.min_gas_supply_rate_transport
-            )
-        if submission.max_gas_supply_rate_transport is not None:
-            buildings = buildings.filter(
-                gas_supply_rate_transport__lte=submission.max_gas_supply_rate_transport
+                Q(
+                    gas_supply_rate_transport__gte=submission.min_gas_supply_rate_transport
+                )
+                & Q(
+                    gas_supply_rate_transport__lte=submission.max_gas_supply_rate_transport
+                )
             )
 
     if submission.electricity_supply_available is not None:
@@ -244,62 +255,57 @@ def filter_buildings(submission):
             electricity_supply_available=submission.electricity_supply_available
         )
     if submission.electricity_supply_available:
-        if submission.min_electricity_rate_consumption is not None:
+        if (
+            submission.min_electricity_rate_consumption is not None
+            and submission.max_electricity_rate_consumption is not None
+        ):
             buildings = buildings.filter(
-                electricity_rate_consumption__gte=submission.min_electricity_rate_consumption
+                Q(
+                    electricity_rate_consumption_min__gte=submission.min_electricity_rate_consumption
+                )
+                & Q(
+                    electricity_rate_consumption_max__lte=submission.max_electricity_rate_consumption
+                )
             )
-        if submission.max_electricity_rate_consumption is not None:
+        if (
+            submission.min_electricity_rate_transport is not None
+            and submission.max_electricity_rate_transport is not None
+        ):
             buildings = buildings.filter(
-                electricity_rate_consumption__lte=submission.max_electricity_rate_consumption
-            )
-        if submission.min_electricity_rate_transport is not None:
-            buildings = buildings.filter(
-                electricity_rate_transport__gte=submission.min_electricity_rate_transport
-            )
-        if submission.max_electricity_rate_transport is not None:
-            buildings = buildings.filter(
-                electricity_rate_transport__lte=submission.max_electricity_rate_transport
+                Q(
+                    electricity_rate_transport__gte=submission.min_electricity_rate_transport
+                )
+                & Q(
+                    electricity_rate_transport__lte=submission.max_electricity_rate_transport
+                )
             )
 
     if submission.heating_available is not None:
         buildings = buildings.filter(heating_available=submission.heating_available)
     if submission.heating_available:
-        if submission.min_heating_rate_consumption is not None:
+        if (
+            submission.min_heating_rate_consumption is not None
+            and submission.max_heating_rate_consumption is not None
+        ):
             buildings = buildings.filter(
-                heating_rate_consumption__gte=submission.min_heating_rate_consumption
+                Q(heating_rate_consumption__gte=submission.min_heating_rate_consumption)
+                & Q(
+                    heating_rate_consumption__lte=submission.max_heating_rate_consumption
+                )
             )
-        if submission.max_heating_rate_consumption is not None:
+        if (
+            submission.min_heating_rate_transport is not None
+            and submission.max_heating_rate_transport is not None
+        ):
             buildings = buildings.filter(
-                heating_rate_consumption__lte=submission.max_heating_rate_consumption
-            )
-        if submission.min_heating_rate_transport is not None:
-            buildings = buildings.filter(
-                heating_rate_transport__gte=submission.min_heating_rate_transport
-            )
-        if submission.max_heating_rate_transport is not None:
-            buildings = buildings.filter(
-                heating_rate_transport__lte=submission.max_heating_rate_transport
+                Q(heating_rate_transport__gte=submission.min_heating_rate_transport)
+                & Q(heating_rate_transport__lte=submission.max_heating_rate_transport)
             )
 
     if submission.waste_disposal_available is not None:
         buildings = buildings.filter(
             waste_disposal_available=submission.waste_disposal_available
         )
-    if submission.waste_disposal_available:
-        if submission.min_waste_disposal_rate is not None:
-            buildings = buildings.filter(
-                Q(waste_disposal_rate_ton__gte=submission.min_waste_disposal_rate)
-                | Q(
-                    waste_disposal_rate_cubic_meter__gte=submission.min_waste_disposal_rate
-                )
-            )
-        if submission.max_waste_disposal_rate is not None:
-            buildings = buildings.filter(
-                Q(waste_disposal_rate_ton__lte=submission.max_waste_disposal_rate)
-                | Q(
-                    waste_disposal_rate_cubic_meter__lte=submission.max_waste_disposal_rate
-                )
-            )
 
     if submission.access_roads_available is not None:
         buildings = buildings.filter(
@@ -322,70 +328,113 @@ def get_options_for_building_question(question_number, buildings, submission):
         3: {"field": "site_format", "type": "array", "next": 4},
         4: {"field": "site_type", "type": "array", "next": 5},
         5: {"field": "transaction_form", "type": "array", "next": 6},
-        6: {"field": ["cost_object"], "type": "range", "next": 7},
+        6: {"field": "cost_object", "type": "range", "next": 7},
         7: {
             "field": "water_supply_available",
             "type": "boolean",
-            "next": 8 if submission.water_supply_available else 11,
+            "next": 8 if getattr(submission, "water_supply_available", None) else 10,
         },
-        8: {"field": ["water_supply_rate_consumption"], "type": "range", "next": 9},
-        9: {"field": ["water_supply_rate_transport"], "type": "range", "next": 10},
-        10: {
-            "field": ["water_supply_objects_max_capacity"],
+        8: {
+            "field": [
+                "water_supply_rate_consumption_min",
+                "water_supply_rate_consumption_max",
+            ],
             "type": "range",
-            "next": 11,
+            "next": 9,
         },
-        11: {
+        9: {
+            "field": "water_supply_objects_max_capacity",
+            "type": "range",
+            "next": 10,
+        },
+        10: {
             "field": "gas_supply_available",
             "type": "boolean",
-            "next": 12 if submission.gas_supply_available else 14,
+            "next": 11 if getattr(submission, "gas_supply_available", None) else 13,
         },
-        12: {"field": ["gas_supply_rate_consumption"], "type": "range", "next": 13},
-        13: {"field": ["gas_supply_rate_transport"], "type": "range", "next": 14},
-        14: {
+        11: {
+            "field": [
+                "gas_supply_rate_consumption_min",
+                "gas_supply_rate_consumption_max",
+            ],
+            "type": "range",
+            "next": 12,
+        },
+        12: {
+            "field": "gas_supply_rate_transport",
+            "type": "range",
+            "next": 13,
+        },
+        13: {
             "field": "electricity_supply_available",
             "type": "boolean",
-            "next": 15 if submission.electricity_supply_available else 17,
+            "next": (
+                14 if getattr(submission, "electricity_supply_available", None) else 16
+            ),
         },
-        15: {"field": ["electricity_rate_consumption"], "type": "range", "next": 16},
-        16: {"field": ["electricity_rate_transport"], "type": "range", "next": 17},
-        17: {
+        14: {
+            "field": [
+                "electricity_rate_consumption_min",
+                "electricity_rate_consumption_max",
+            ],
+            "type": "range",
+            "next": 15,
+        },
+        15: {
+            "field": "electricity_rate_transport",
+            "type": "range",
+            "next": 16,
+        },
+        16: {
             "field": "heating_available",
             "type": "boolean",
-            "next": 18 if submission.heating_available else 20,
+            "next": 17 if getattr(submission, "heating_available", None) else 19,
         },
-        18: {"field": ["heating_rate_consumption"], "type": "range", "next": 19},
-        19: {"field": ["heating_rate_transport"], "type": "range", "next": 20},
-        20: {
+        17: {
+            "field": "heating_rate_consumption",
+            "type": "range",
+            "next": 18,
+        },
+        18: {
+            "field": "heating_rate_transport",
+            "type": "range",
+            "next": 19,
+        },
+        19: {
             "field": "waste_disposal_available",
             "type": "boolean",
-            "next": 21 if submission.waste_disposal_available else 22,
+            "next": 20,
         },
-        21: {
-            "field": ["waste_disposal_rate_ton", "waste_disposal_rate_cubic_meter"],
-            "type": "range",
-            "next": 22,
-        },
-        22: {"field": "access_roads_available", "type": "boolean", "next": 23},
-        23: {"field": "railways_available", "type": "boolean", "next": 24},
-        24: {"field": "truck_parking_available", "type": "boolean", "next": 25},
-        25: {"field": "additional_comments", "type": "string", "next": None},
+        20: {"field": "access_roads_available", "type": "boolean", "next": 21},
+        21: {"field": "railways_available", "type": "boolean", "next": 22},
+        22: {"field": "truck_parking_available", "type": "boolean", "next": 23},
     }
     if question_number not in question_field_mapping:
-        raise ValidationError("Invalid question number")
+        return None, None
+    buildings_count = buildings.count()
     field_info = question_field_mapping[question_number]
     fields = field_info["field"]
     field_type = field_info["type"]
     next_question = field_info["next"]
+    if buildings_count == 1:
+        return None, None
 
     if field_type == "range":
-        min_field, max_field = fields[0], fields[0]
-        min_value = buildings.exclude(**{f"{min_field}__isnull": True}).aggregate(
-            models.Min(min_field)
-        )[f"{min_field}__min"]
-        max_value = buildings.exclude(**{f"{max_field}__isnull": True}).aggregate(
-            models.Max(max_field)
-        )[f"{max_field}__max"]
+        if isinstance(fields, list):
+            min_field, max_field = fields
+            min_value = buildings.exclude(**{f"{min_field}__isnull": True}).aggregate(
+                models.Min(min_field)
+            )[f"{min_field}__min"]
+            max_value = buildings.exclude(**{f"{max_field}__isnull": True}).aggregate(
+                models.Max(max_field)
+            )[f"{max_field}__max"]
+        else:
+            min_value = buildings.exclude(**{f"{fields}__isnull": True}).aggregate(
+                models.Min(fields)
+            )[f"{fields}__min"]
+            max_value = buildings.exclude(**{f"{fields}__isnull": True}).aggregate(
+                models.Max(fields)
+            )[f"{fields}__max"]
         return (min_value, max_value), next_question
 
     if field_type == "array":
@@ -413,3 +462,48 @@ def get_options_for_building_question(question_number, buildings, submission):
         .exclude(**{f"{fields}__isnull": True}),
         next_question,
     )
+
+
+def clean_and_process_text(text):
+    return literal_eval(text)
+
+
+def generate_report_file(chat_message, support_text, advice_text):
+    support_text = clean_and_process_text(support_text)
+    advice_text = clean_and_process_text(advice_text)
+
+    support_html = markdown.markdown(support_text, output_format="html")
+    advice_html = markdown.markdown(advice_text, output_format="html")
+
+    html_content = f"""
+    <html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h2>Меры поддержки</h2>
+        {support_html}
+        <h2>Советы по найму</h2>
+        {advice_html}
+    </body>
+    </html>
+    """
+
+    options = {
+        "page-size": "A4",
+        "margin-top": "0.75in",
+        "margin-right": "0.75in",
+        "margin-bottom": "0.75in",
+        "margin-left": "0.75in",
+        "encoding": "UTF-8",
+        "custom-header": [("Accept-Encoding", "gzip")],
+        "cookie": [],
+        "no-outline": None,
+    }
+
+    with tempfile.NamedTemporaryFile(delete=True, suffix=".pdf") as output:
+        pdfkit.from_string(html_content, output.name, options=options)
+        with open(output.name, "rb") as f:
+            chat_message.file.save(f"{chat_message.chat.id}_report.pdf", File(f))
+        chat_message.save()
+    return chat_message.file.path

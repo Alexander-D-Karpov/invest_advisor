@@ -6,6 +6,8 @@ from invest_advisor.chat.models import (
     TechnoparkSubmission,
     Chat,
     ChatMessage,
+    Technopark,
+    BuildingModel,
 )
 
 
@@ -75,7 +77,7 @@ class ListChatsSerializer(serializers.ModelSerializer):
 class ListChatMessagesSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChatMessage
-        fields = ["text", "from_user", "created"]
+        fields = ["text", "from_user", "created", "file", "data"]
         extra_kwargs = {
             "from_user": {"read_only": True},
             "created": {"read_only": True},
@@ -83,3 +85,37 @@ class ListChatMessagesSerializer(serializers.ModelSerializer):
 
     def save(self, **kwargs):
         return ChatMessage.objects.create(**kwargs, **self.validated_data)
+
+
+class TechnoparkTableDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Technopark
+        fields = [
+            "name",
+            "type",
+            "minimal_cost_of_buy",
+            "link",
+            "tax_income",
+            "tax_estate",
+            "tax_ground",
+            "insurance_premiums",
+        ]
+
+
+class BuildingTableDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BuildingModel
+        fields = [
+            "name",
+            "pref_treatment",
+            "support_infra_object",
+            "municipal_entity",
+            "site_format",
+            "ownership_form",
+            "transaction_form",
+            "cost_object",
+        ]
+
+
+class RequestFileSerializer(serializers.Serializer):
+    name = serializers.CharField()

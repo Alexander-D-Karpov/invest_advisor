@@ -10,7 +10,7 @@ from invest_advisor.chat.api.views import (
     SubmitTechnoparkSubmissionAPIView,
     ListChatAPIView,
     ListCreateChatMessageAPIView,
-    SubmitBuildingSubmissionAPIView,
+    SubmitBuildingSubmissionAPIView, RequestFileAPIView,
 )
 
 app_name = "chat"
@@ -21,6 +21,11 @@ urlpatterns = [
         "<str:id>/messages/",
         ListCreateChatMessageAPIView.as_view(),
         name="chat-messages",
+    ),
+    path(
+        "<str:id>/report/",
+        RequestFileAPIView.as_view(),
+        name="chat-report",
     ),
     path(
         "technopark/",
