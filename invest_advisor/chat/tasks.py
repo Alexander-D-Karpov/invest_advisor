@@ -8,22 +8,22 @@ from django.conf import settings
 from django.core.cache import cache
 
 from invest_advisor.chat.api.serializers import (
-    TechnoparkSubmissionSerializer,
     BuildingSubmissionSerializer,
-    TechnoparkTableDataSerializer,
     BuildingTableDataSerializer,
+    TechnoparkSubmissionSerializer,
+    TechnoparkTableDataSerializer,
 )
 from invest_advisor.chat.models import (
-    TechnoparkSubmission,
+    BuildingModel,
     BuildingSubmission,
     Chat,
     ChatMessage,
     Technopark,
-    BuildingModel,
+    TechnoparkSubmission,
 )
 from invest_advisor.chat.services import (
-    filter_technoparks,
     filter_buildings,
+    filter_technoparks,
     generate_report_file,
 )
 

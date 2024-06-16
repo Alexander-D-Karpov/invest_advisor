@@ -1,7 +1,7 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from invest_advisor.chat.models import TechnoparkSubmission, BuildingSubmission, Chat
+from invest_advisor.chat.models import BuildingSubmission, Chat, TechnoparkSubmission
 
 
 @receiver(post_save, sender=TechnoparkSubmission)

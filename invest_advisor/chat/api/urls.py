@@ -2,15 +2,16 @@ from django.urls import path
 
 from invest_advisor.chat.api.views import (
     BuildingOptionsAPIView,
+    ListChatAPIView,
     ListCreateBuildingSubmissionAPIView,
+    ListCreateChatMessageAPIView,
     ListCreateTechnoparkSubmissionAPIView,
+    RequestFileAPIView,
     RetrieveUpdateDestroyBuildingSubmissionAPIView,
     RetrieveUpdateDestroyTechnoparkSubmissionAPIView,
-    TechnoparkOptionsAPIView,
+    SubmitBuildingSubmissionAPIView,
     SubmitTechnoparkSubmissionAPIView,
-    ListChatAPIView,
-    ListCreateChatMessageAPIView,
-    SubmitBuildingSubmissionAPIView, RequestFileAPIView,
+    TechnoparkOptionsAPIView,
 )
 
 app_name = "chat"

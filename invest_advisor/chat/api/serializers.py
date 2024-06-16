@@ -2,12 +2,12 @@ from django.db.models import QuerySet
 from rest_framework import serializers
 
 from invest_advisor.chat.models import (
+    BuildingModel,
     BuildingSubmission,
-    TechnoparkSubmission,
     Chat,
     ChatMessage,
     Technopark,
-    BuildingModel,
+    TechnoparkSubmission,
 )
 
 

@@ -6,18 +6,18 @@ from rest_framework.response import Response
 from invest_advisor.chat.api.serializers import (
     BuildingSubmissionSerializer,
     ListBuildingSubmissionSerializer,
+    ListChatMessagesSerializer,
+    ListChatsSerializer,
     ListTechnoparkSubmissionSerializer,
     OptionsSerializer,
-    TechnoparkSubmissionSerializer,
-    ListChatsSerializer,
-    ListChatMessagesSerializer,
     RequestFileSerializer,
+    TechnoparkSubmissionSerializer,
 )
 from invest_advisor.chat.models import (
     BuildingSubmission,
-    TechnoparkSubmission,
     Chat,
     ChatMessage,
+    TechnoparkSubmission,
 )
 from invest_advisor.chat.services import (
     filter_buildings,

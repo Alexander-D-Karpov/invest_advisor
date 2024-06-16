@@ -6,7 +6,6 @@ import pdfkit
 from django.core.files import File
 from django.db import models
 from django.db.models import Q
-from rest_framework.exceptions import ValidationError
 
 from invest_advisor.chat.models import BuildingModel, Technopark
 
@@ -476,18 +475,18 @@ def generate_report_file(chat_message, support_text, advice_text):
     advice_html = markdown.markdown(advice_text, output_format="html")
 
     html_content = f"""
-    <html>
-    <head>
-        <meta charset="UTF-8">
-    </head>
-    <body>
-        <h2>Меры поддержки</h2>
-        {support_html}
-        <h2>Советы по найму</h2>
-        {advice_html}
-    </body>
-    </html>
-    """
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<h2>Меры поддержки</h2>
+{support_html}
+<h2>Советы по найму</h2>
+{advice_html}
+</body>
+</html>
+"""
 
     options = {
         "page-size": "A4",
